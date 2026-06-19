@@ -20,7 +20,7 @@ function remarkStripLeadingImage() {
 }
 
 export default defineConfig({
-  site: "https://autotheorieoefenen.com",
+  site: "https://autotheorieblog.nl",
   output: "static",
   trailingSlash: "always",
   build: { format: "directory" },
