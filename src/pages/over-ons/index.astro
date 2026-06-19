@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Container from "@components/Container.astro";
+import { SITE } from "@lib/site";
+---
+<BaseLayout
+  title={`Over ons | ${SITE.name}`}
+  description="Wie zijn wij? Autotheorieblog.nl biedt gratis artikelen en tips over het CBR theorie-examen."
+>
+  <Container class="py-(--spacing-section)">
+    <div class="mx-auto max-w-2xl">
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900">Over Autotheorieblog</h1>
+      <div class="mt-8 space-y-5 text-slate-600 leading-relaxed">
+        <p>Autotheorieblog.nl is een informatieve website over het CBR theorie-examen. Wij schrijven praktische artikelen die je helpen te begrijpen hoe het Nederlandse verkeer in elkaar zit en hoe je je optimaal kunt voorbereiden op je theorie-examen.</p>
+        <p>Onze artikelen gaan over verkeersregels, verkeersborden, gevaarherkenning, en praktische tips voor het examen. Alle inhoud is gratis toegankelijk — geen account nodig.</p>
+        <p>Heb je een vraag of opmerking? Neem dan contact met ons op via de <a href="/contact/" class="text-brand-700 font-medium underline underline-offset-2">contactpagina</a>.</p>
+      </div>
+    </div>
+  </Container>
+</BaseLayout>

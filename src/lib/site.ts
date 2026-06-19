@@ -8,6 +8,9 @@ export const SITE = {
   locale: "nl_NL",
   nav: [
     { label: "Blog", href: "/blog/" },
+    { label: "Theorie uitleg", href: "/theorie-uitleg/" },
+    { label: "Rijbewijs halen", href: "/rijbewijs-halen/" },
+    { label: "Over ons", href: "/over-ons/" },
     { label: "Contact", href: "/contact/" },
   ],
   popular: [],
