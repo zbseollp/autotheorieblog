@@ -12,7 +12,14 @@ const recent = (await getRecentPosts(4)).map((p) => ({ slug: p.id, title: displa
       <!-- Merk -->
       <div class="lg:col-span-1">
         <div class="flex items-center gap-2 mb-4">
-          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white text-xs font-black">AT</div>
+          <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+            <rect width="64" height="64" rx="14" fill="#7c3aed"/>
+            <circle cx="32" cy="32" r="21" stroke="white" stroke-width="5"/>
+            <circle cx="32" cy="32" r="5" fill="white"/>
+            <line x1="32" y1="27" x2="32" y2="11" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            <line x1="27.7" y1="34.5" x2="13.8" y2="43.5" stroke="white" stroke-width="4" stroke-linecap="round"/>
+            <line x1="36.3" y1="34.5" x2="50.2" y2="43.5" stroke="white" stroke-width="4" stroke-linecap="round"/>
+          </svg>
           <span class="font-bold text-white text-base">AutotheorieBlog</span>
         </div>
         <p class="text-sm text-slate-400 leading-relaxed">Praktische tips en uitleg voor het CBR theorie-examen. Gratis te lezen.</p>

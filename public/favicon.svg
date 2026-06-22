@@ -1,4 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Autotheorieoefenen">
-  <rect width="64" height="64" rx="14" fill="#f65900"/>
-  <path fill="#ffffff" fill-rule="evenodd" d="M32 13.5 51.5 50.5 H42.2 L38.7 43.6 H25.3 L21.8 50.5 H12.5 Z M32 27.4 28.1 35.1 H35.9 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AutotheorieBlog">
+  <!-- Paarse achtergrond -->
+  <rect width="64" height="64" rx="14" fill="#6d28d9"/>
+  <!-- Stuurwiel buitenring -->
+  <circle cx="32" cy="32" r="21" fill="none" stroke="white" stroke-width="5"/>
+  <!-- Stuurwiel hub -->
+  <circle cx="32" cy="32" r="5" fill="white"/>
+  <!-- Spaak omhoog -->
+  <line x1="32" y1="27" x2="32" y2="11" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <!-- Spaak linksonder (210°) -->
+  <line x1="27.7" y1="34.5" x2="13.8" y2="43.5" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <!-- Spaak rechtsonder (330°) -->
+  <line x1="36.3" y1="34.5" x2="50.2" y2="43.5" stroke="white" stroke-width="4" stroke-linecap="round"/>
 </svg>
