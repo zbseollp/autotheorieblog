@@ -1,120 +1,154 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Container from "@components/Container.astro";
-import BlogPostCard from "@components/BlogPostCard.astro";
 import { getRecentPosts, displayTitle, displayDescription, formatDate } from "@lib/posts";
 import { SITE } from "@lib/site";
 
-const recent = await getRecentPosts(7);
-const [hero, ...rest] = recent;
-const heroTitle = hero ? displayTitle(hero) : "";
-const heroDesc = hero ? displayDescription(hero) : "";
+const posts = await getRecentPosts(8);
+const [lead, second, third, ...rest] = posts;
 
 const topics = [
-  { title: "Theorie uitleg", desc: "Begrijp de verkeersregels en slaag voor het CBR-examen.", href: "/theorie-uitleg/", icon: "📖" },
-  { title: "Rijbewijs halen", desc: "Van rijlessen tot examen: alles wat je moet weten.", href: "/rijbewijs-halen/", icon: "🚗" },
-  { title: "Gevaarherkenning", desc: "Tips om gevaarherkenning tijdens het examen goed te doen.", href: "/blog/", icon: "⚠️" },
-  { title: "Kosten & tarieven", desc: "Wat kost een rijbewijs en het CBR-examen in 2026?", href: "/blog/", icon: "💶" },
+  { label: "Gevaarherkenning", href: "/blog/" },
+  { label: "Voorrangsregels", href: "/theorie-uitleg/" },
+  { label: "Rijbewijs halen", href: "/rijbewijs-halen/" },
+  { label: "Kosten examen", href: "/rijbewijs-halen/" },
+  { label: "Faalangst examen", href: "/blog/" },
+  { label: "Code 95", href: "/blog/" },
 ];
-
-const jsonld = {
-  "@context": "https://schema.org",
-  "@graph": [
-    { "@type": "Organization", "@id": `${SITE.url}/#org`, name: SITE.name, url: SITE.url },
-    { "@type": "WebSite", "@id": `${SITE.url}/#website`, url: SITE.url, name: SITE.name, publisher: { "@id": `${SITE.url}/#org` }, inLanguage: "nl-NL" },
-  ],
-};
 ---
+<!-- Editorial homepage: geen hero, magazine-structuur, serif typografie -->
 <BaseLayout
-  title={`${SITE.name} — alles over het theorie-examen`}
+  title={`${SITE.name} — alles over het CBR theorie-examen`}
   description={SITE.description}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(jsonld)} is:inline />
+  <Container class="py-(--spacing-section)">
 
-  <!-- Hero: editorial met paarse balk -->
-  <section class="relative -mt-16 overflow-hidden pt-16 md:-mt-20 md:pt-20">
-    <div class="absolute inset-0 bg-[linear-gradient(170deg,var(--color-brand-900)_0%,var(--color-brand-700)_55%,var(--color-brand-500)_100%)]"></div>
-    <Container class="relative py-(--spacing-section)">
-      <div class="mx-auto max-w-2xl text-center">
-        <span class="inline-flex items-center rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white">CBR theorie 2026 · Gratis uitleg</span>
-        <h1 class="mt-5 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-          Alles over het<br />theorie-examen
-        </h1>
-        <p class="mt-4 text-lg text-brand-100">
-          Praktische artikelen, tips en uitleg om jou te helpen slagen voor het CBR theorie-examen.
-        </p>
-        <div class="mt-8 flex flex-wrap justify-center gap-3">
-          <a href="/blog/" class="inline-flex items-center rounded-xl bg-white px-6 py-3 font-semibold text-brand-700 transition hover:bg-brand-50">Alle artikelen lezen</a>
-          <a href="/theorie-uitleg/" class="inline-flex items-center rounded-xl bg-brand-600/60 px-6 py-3 font-semibold text-white transition hover:bg-brand-600">Theorie uitleg →</a>
+    <!-- Editoriaal intro label -->
+    <div class="flex items-center gap-4 mb-8">
+      <div class="h-px flex-1 bg-slate-900"></div>
+      <span class="text-xs font-bold uppercase tracking-[0.3em] text-slate-500">Nieuwste artikelen</span>
+      <div class="h-px flex-1 bg-slate-900"></div>
+    </div>
+
+    <!-- Hoofd 2-koloms layout -->
+    <div class="grid gap-0 lg:grid-cols-3 lg:divide-x lg:divide-slate-200">
+
+      <!-- Linkerkolom: uitgelicht artikel groot -->
+      <div class="lg:col-span-2 lg:pr-10">
+        {lead && (
+          <a href={`/${lead.id}/`} class="group block mb-8 pb-8 border-b border-slate-200">
+            <time class="text-xs font-bold uppercase tracking-widest text-brand-700">{formatDate(lead.data.date)}</time>
+            <h2 style="font-family: var(--font-heading);" class="mt-2 text-3xl font-bold leading-tight text-slate-900 group-hover:text-brand-700 transition-colors sm:text-4xl">
+              {displayTitle(lead)}
+            </h2>
+            {displayDescription(lead) && (
+              <p class="mt-3 text-slate-600 leading-relaxed line-clamp-3 text-lg">{displayDescription(lead)}</p>
+            )}
+            <span class="mt-4 inline-flex items-center gap-1 text-sm font-bold text-brand-700 group-hover:gap-2 transition-all">
+              Lees het volledige artikel →
+            </span>
+          </a>
+        )}
+
+        <!-- Twee artikelen naast elkaar -->
+        {(second || third) && (
+          <div class="grid gap-6 sm:grid-cols-2 mb-8 pb-8 border-b border-slate-200">
+            {[second, third].filter(Boolean).map((p) => p && (
+              <a href={`/${p.id}/`} class="group block">
+                <time class="text-xs font-semibold uppercase tracking-wider text-brand-600">{formatDate(p.data.date)}</time>
+                <h3 style="font-family: var(--font-heading);" class="mt-1 text-xl font-bold text-slate-900 group-hover:text-brand-700 transition-colors leading-snug">
+                  {displayTitle(p)}
+                </h3>
+                {displayDescription(p) && (
+                  <p class="mt-2 text-sm text-slate-600 line-clamp-3 leading-relaxed">{displayDescription(p)}</p>
+                )}
+              </a>
+            ))}
+          </div>
+        )}
+
+        <!-- Meer artikelen als lijst -->
+        {rest.length > 0 && (
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Meer artikelen</h3>
+            <div class="space-y-0">
+              {rest.slice(0, 3).map((p) => (
+                <a href={`/${p.id}/`} class="group flex items-baseline gap-4 border-b border-slate-100 py-3 last:border-0">
+                  <time class="shrink-0 text-xs text-slate-400 w-20">{formatDate(p.data.date)}</time>
+                  <span style="font-family: var(--font-heading);" class="font-semibold text-slate-800 group-hover:text-brand-700 transition-colors leading-snug">{displayTitle(p)}</span>
+                </a>
+              ))}
+            </div>
+            <a href="/blog/" class="mt-5 inline-flex text-sm font-bold uppercase tracking-wider text-brand-700 hover:underline">
+              Alle artikelen bekijken →
+            </a>
+          </div>
+        )}
+      </div>
+
+      <!-- Rechterkolom: sidebar -->
+      <div class="mt-10 lg:mt-0 lg:pl-10 flex flex-col gap-8 border-t border-slate-200 pt-8 lg:border-t-0 lg:pt-0">
+
+        <!-- Over het blog -->
+        <div>
+          <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Over dit blog</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">Autotheorieblog.nl schrijft over alles wat je nodig hebt voor het CBR theorie-examen: verkeersregels, gevaarherkenning en praktische tips.</p>
+          <a href="/over-ons/" class="mt-3 inline-flex text-xs font-bold uppercase tracking-wider text-brand-700 hover:underline">Meer over ons →</a>
+        </div>
+
+        <!-- Onderwerpen -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="h-px flex-1 bg-slate-200"></div>
+            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400">Onderwerpen</h3>
+            <div class="h-px flex-1 bg-slate-200"></div>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            {topics.map((t) => (
+              <a href={t.href} class="rounded-none border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700 hover:border-brand-600 hover:text-brand-700 transition-colors">
+                {t.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="border-t-2 border-slate-900 pt-6">
+          <div class="border-t border-slate-300 mb-4"></div>
+          <p style="font-family: var(--font-heading);" class="text-xl font-bold text-slate-900 leading-snug">Klaar om te slagen voor je theorie?</p>
+          <p class="mt-2 text-sm text-slate-600">Lees onze gratis artikelen en ga goed voorbereid het examen in.</p>
+          <a href="/blog/" class="mt-4 inline-flex w-full items-center justify-center bg-brand-700 px-4 py-3 text-sm font-bold text-white hover:bg-brand-800 transition-colors">
+            Alle artikelen
+          </a>
         </div>
       </div>
-    </Container>
-  </section>
+    </div>
 
-  <!-- Uitgelicht artikel -->
-  {hero && (
-    <section class="bg-slate-50 border-b border-slate-100">
-      <Container class="py-(--spacing-section)">
-        <h2 class="mb-6 text-xs font-bold uppercase tracking-widest text-brand-700">Uitgelicht artikel</h2>
-        <a href={`/${hero.id}/`} class="group flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm hover:shadow-xl transition lg:flex-row">
-          {hero.data.featuredImage ? (
-            <img src={hero.data.featuredImage} alt={heroTitle}
-                 width="800" height="450" loading="eager" fetchpriority="high"
-                 class="h-56 w-full object-cover lg:h-auto lg:w-2/5 group-hover:brightness-95 transition" />
-          ) : (
-            <div class="h-56 w-full bg-gradient-to-br from-brand-700 to-brand-400 lg:h-auto lg:w-2/5 flex items-center justify-center">
-              <span class="text-4xl font-extrabold text-white/20">BLOG</span>
-            </div>
-          )}
-          <div class="flex flex-1 flex-col justify-center p-8">
-            <time class="text-xs font-semibold text-brand-700">{formatDate(hero.data.date)}</time>
-            <h3 class="mt-2 text-2xl font-extrabold text-slate-900 group-hover:text-brand-700 sm:text-3xl">{heroTitle}</h3>
-            {heroDesc && <p class="mt-3 text-slate-600 line-clamp-3">{heroDesc}</p>}
-            <span class="mt-5 inline-flex items-center text-sm font-bold text-brand-700">Lees het artikel →</span>
-          </div>
-        </a>
-      </Container>
-    </section>
-  )}
-
-  <!-- Topic cards -->
-  <section>
-    <Container class="py-(--spacing-section)">
-      <h2 class="text-3xl font-extrabold tracking-tight text-slate-900">Populaire onderwerpen</h2>
-      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {topics.map((t) => (
-          <a href={t.href} class="group flex flex-col rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-brand-300 hover:shadow-lg">
-            <span class="text-2xl">{t.icon}</span>
-            <h3 class="mt-3 text-base font-bold text-slate-900 group-hover:text-brand-700">{t.title}</h3>
-            <p class="mt-2 flex-1 text-sm text-slate-600">{t.desc}</p>
-            <span class="mt-4 text-sm font-semibold text-brand-700">Lees meer →</span>
+    <!-- Onderste rij: theorie-uitleg blok -->
+    <div class="mt-12 pt-10 border-t-2 border-slate-900">
+      <div class="border-t border-slate-300 mb-8"></div>
+      <div class="flex items-center gap-4 mb-8">
+        <h2 style="font-family: var(--font-heading);" class="text-2xl font-bold text-slate-900">Theorie onderwerpen</h2>
+        <div class="h-px flex-1 bg-slate-200"></div>
+        <a href="/theorie-uitleg/" class="text-xs font-bold uppercase tracking-wider text-brand-700 hover:underline">Bekijk alle →</a>
+      </div>
+      <div class="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-3 border border-slate-200">
+        {[
+          { nr: "01", title: "Voorrangsregels", sub: "Kruispunten, haaientanden en borden" },
+          { nr: "02", title: "Gevaarherkenning", sub: "Herken en vermijd gevaarlijke situaties" },
+          { nr: "03", title: "Verkeerstekens", sub: "Alle borden die je moet kennen" },
+          { nr: "04", title: "Snelheidslimieten", sub: "Maximumsnelheden per wegtype" },
+          { nr: "05", title: "Rijbewijs halen", sub: "Van lessen tot examen" },
+          { nr: "06", title: "Examen tips", sub: "Slaag de eerste keer" },
+        ].map((item) => (
+          <a href="/theorie-uitleg/" class="group bg-white p-5 hover:bg-brand-50 transition-colors">
+            <div class="text-3xl font-bold text-slate-100 group-hover:text-brand-200 transition-colors" style="font-family: var(--font-heading);">{item.nr}</div>
+            <h3 class="mt-1 font-bold text-slate-900 group-hover:text-brand-700" style="font-family: var(--font-heading);">{item.title}</h3>
+            <p class="mt-1 text-xs text-slate-500">{item.sub}</p>
           </a>
         ))}
       </div>
-    </Container>
-  </section>
+    </div>
 
-  <!-- Recente artikelen -->
-  {rest.length > 0 && (
-    <section class="bg-slate-50">
-      <Container class="py-(--spacing-section)">
-        <div class="flex items-end justify-between">
-          <h2 class="text-3xl font-extrabold tracking-tight text-slate-900">Recente artikelen</h2>
-          <a href="/blog/" class="text-sm font-semibold text-brand-700 hover:underline">Alle artikelen →</a>
-        </div>
-        <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.slice(0, 6).map((p, i) => <BlogPostCard post={p} eager={i === 0} />)}
-        </div>
-      </Container>
-    </section>
-  )}
-
-  <!-- CTA band -->
-  <section class="bg-brand-700">
-    <Container class="py-12 text-center">
-      <h2 class="text-2xl font-extrabold text-white">Klaar om te slagen?</h2>
-      <p class="mt-2 text-brand-100">Lees onze gratis artikelen en bereid je voor op het CBR theorie-examen.</p>
-      <a href="/blog/" class="mt-6 inline-flex rounded-xl bg-white px-6 py-3 font-semibold text-brand-700 hover:bg-brand-50 transition">Alle artikelen bekijken</a>
-    </Container>
-  </section>
+  </Container>
 </BaseLayout>
