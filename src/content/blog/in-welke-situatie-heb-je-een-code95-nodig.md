@@ -1,6 +1,7 @@
 ---
 title: "In welke situatie heb je een code95 nodig?"
 date: "2023-05-04"
+featuredImage: "/assets/images/blog/in-welke-situatie-heb-je-een-code95-nodig/semi-trailer-g03c5e7c37_1280.webp"
 ---
 
 Code 95 is een aanduiding op het rijbewijs. Deze code is in de wereld geroepen om de veiligheid van de Europese transportsector te verbeteren. Niet iedereen heeft een code95 nodig om veilig de weg op te kunnen. In dit artikel gaan we uitleggen wat code95 is en in welke situatie je code 95 nodig hebt.

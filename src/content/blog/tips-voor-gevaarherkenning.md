@@ -2,6 +2,7 @@
 title: "Het onderdeel gevaarherkenning"
 description: "Binnenkort je auto theorie-examen? Met deze tips over gevaarherkenning, wordt de kans op slagen al een stuk groter!"
 date: "2023-05-04"
+featuredImage: "/assets/images/blog/tips-voor-gevaarherkenning/dimitry-b-FtOzmrLJU-o-unsplash.webp"
 ---
 
 Gevaarherkenning is het eerste van de drie onderdelen van het autotheorie examen. Dit onderdeel is echter ook het meest gevreesde onderdeel van het examen. In dit artikel gaan we uitleggen hoe het onderdeel gevaarherkenning eruit ziet, wanneer je welke keuze moet maken en nog een aantal tips.

@@ -2,22 +2,33 @@
 import type { Post } from "@lib/posts";
 import { displayTitle, displayDescription, formatDate } from "@lib/posts";
 interface Props { post: Post; eager?: boolean }
-const { post } = Astro.props;
-const { date } = post.data;
+const { post, eager } = Astro.props;
+const { date, featuredImage } = post.data;
 const title = displayTitle(post);
 const desc = displayDescription(post);
 const href = `/${post.id}/`;
 ---
-<article class="group relative bg-white rounded-xl border border-slate-200 p-5 hover:border-brand-300 hover:shadow-md transition-all">
-  <div class="flex items-center gap-2 mb-3">
-    <span class="inline-flex items-center rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-semibold text-brand-700">Theorie</span>
-    <time datetime={date.toISOString()} class="text-xs text-slate-400">{formatDate(date)}</time>
-  </div>
-  <h2 class="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-700 transition-colors">
-    <a href={href} class="after:absolute after:inset-0">{title}</a>
-  </h2>
-  {desc && <p class="mt-2 text-sm text-slate-500 leading-relaxed line-clamp-2">{desc}</p>}
-  <div class="mt-4 flex items-center gap-1 text-xs font-semibold text-brand-700">
-    Lees meer <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-0.5 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+<article class="group relative bg-white rounded-xl border border-slate-200 hover:border-brand-300 hover:shadow-md transition-all overflow-hidden">
+  {featuredImage && (
+    <img
+      src={featuredImage}
+      alt={title}
+      width="400" height="220"
+      loading={eager ? "eager" : "lazy"}
+      class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300"
+    />
+  )}
+  <div class="p-5">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="inline-flex items-center rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-semibold text-brand-700">Theorie</span>
+      <time datetime={date.toISOString()} class="text-xs text-slate-400">{formatDate(date)}</time>
+    </div>
+    <h2 class="text-base font-bold text-slate-900 leading-snug group-hover:text-brand-700 transition-colors">
+      <a href={href} class="after:absolute after:inset-0">{title}</a>
+    </h2>
+    {desc && <p class="mt-2 text-sm text-slate-500 leading-relaxed line-clamp-2">{desc}</p>}
+    <div class="mt-4 flex items-center gap-1 text-xs font-semibold text-brand-700">
+      Lees meer <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-0.5 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
   </div>
 </article>

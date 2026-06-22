@@ -1,6 +1,7 @@
 ---
 title: "Wat is een tussentijdse toets?"
 date: "2023-05-04"
+featuredImage: "/assets/images/blog/wat-is-een-tussentijdse-toets/mercedes-benz-g82fa974cf_1280-1-1024x682.jpg"
 ---
 
 Wat is een tussentijdse toets? Als je bezig bent met het behalen van je rijbewijs dan is dit een term die je vaak voorbij hoort komen. Een tussentijdse toets is eigenlijk een soort oefenexamen voor je rijbewijs. Je kunt tijdens je tussentijdse toets niet zakken of slagen.  Toch heeft het afleggen van een tussentijdse toets een aantal voordelen.
