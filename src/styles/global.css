@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "@fontsource-variable/inter/wght.css";
-@import "@fontsource-variable/playfair-display/wght.css";
 
 /* Fallback metric-matched font to prevent CLS on FOUT */
 @font-face {
@@ -35,7 +34,7 @@
 
   --font-sans: "Inter Variable", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Inter Variable", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Playfair Display Variable", "Georgia", "Times New Roman", serif;
+  --font-heading: "Inter Variable", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
 
   --spacing-section: clamp(2.5rem, 4.5vw, 5rem);
 }
@@ -56,7 +55,6 @@
     text-rendering: optimizeLegibility;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-heading);
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--color-slate-900);

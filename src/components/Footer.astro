@@ -3,58 +3,68 @@ import Container from "@components/Container.astro";
 import CurrentYear from "@components/CurrentYear.astro";
 import { SITE } from "@lib/site";
 import { getRecentPosts, displayTitle } from "@lib/posts";
-const recent = (await getRecentPosts(5)).map((p) => ({ slug: p.id, title: displayTitle(p) }));
+const recent = (await getRecentPosts(4)).map((p) => ({ slug: p.id, title: displayTitle(p) }));
 ---
-<footer class="mt-(--spacing-section) border-t-2 border-slate-900">
-  <!-- Dubbele lijn editorial -->
-  <div class="border-t border-slate-300"></div>
-
+<footer class="mt-(--spacing-section) bg-slate-900 text-slate-300">
   <Container class="py-12">
-    <div class="grid gap-10 md:grid-cols-3">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
-      <!-- Over het blog -->
-      <div>
-        <div style="font-family: var(--font-heading);" class="text-xl font-bold text-slate-900 mb-4">Autotheorieblog.nl</div>
-        <p class="text-sm text-slate-600 leading-relaxed">
-          Praktische artikelen over het CBR theorie-examen. Leer de verkeersregels, begrijp de gevaarherkenning en slaag voor je rijbewijs.
-        </p>
-        <div class="mt-5 flex gap-4 text-xs font-semibold uppercase tracking-wider text-brand-700">
-          <a href="/blog/" class="hover:underline">Blog</a>
-          <a href="/theorie-uitleg/" class="hover:underline">Theorie</a>
-          <a href="/rijbewijs-halen/" class="hover:underline">Rijbewijs</a>
+      <!-- Merk -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white text-xs font-black">AT</div>
+          <span class="font-bold text-white text-base">AutotheorieBlog</span>
         </div>
+        <p class="text-sm text-slate-400 leading-relaxed">Praktische tips en uitleg voor het CBR theorie-examen. Gratis te lezen.</p>
       </div>
 
       <!-- Recente artikelen -->
-      <div>
-        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Recente artikelen</h3>
-        <ul class="space-y-3">
+      <div class="lg:col-span-1">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Recente artikelen</h3>
+        <ul class="space-y-2.5">
           {recent.map((p) => (
-            <li class="border-b border-slate-100 pb-3 last:border-0">
-              <a href={`/${p.slug}/`} style="font-family: var(--font-heading);" class="text-sm font-semibold text-slate-800 leading-snug hover:text-brand-700 transition-colors line-clamp-2">{p.title}</a>
+            <li>
+              <a href={`/${p.slug}/`} class="text-sm text-slate-300 hover:text-white transition-colors line-clamp-2 leading-snug">{p.title}</a>
             </li>
           ))}
         </ul>
       </div>
 
-      <!-- Links + contact -->
+      <!-- Navigatie -->
       <div>
-        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Navigatie</h3>
-        <ul class="space-y-2 text-sm">
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Navigatie</h3>
+        <ul class="space-y-2">
           {SITE.nav.map((i) => (
-            <li><a href={i.href} class="text-slate-600 hover:text-brand-700 transition-colors">{i.label}</a></li>
+            <li><a href={i.href} class="text-sm text-slate-300 hover:text-white transition-colors">{i.label}</a></li>
           ))}
-          <li><a href="/sitemap/" class="text-slate-600 hover:text-brand-700 transition-colors">Sitemap</a></li>
+          <li><a href="/sitemap/" class="text-sm text-slate-300 hover:text-white transition-colors">Sitemap</a></li>
         </ul>
+      </div>
+
+      <!-- CTA -->
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Snel naar</h3>
+        <div class="flex flex-col gap-2">
+          <a href="/blog/" class="flex items-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+            Alle artikelen
+          </a>
+          <a href="/theorie-uitleg/" class="flex items-center gap-2 rounded-lg bg-slate-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-600 transition-colors">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 4.5v11L12 22l-9-4.5v-11L12 2z"/></svg>
+            Theorie uitleg
+          </a>
+        </div>
       </div>
     </div>
   </Container>
 
-  <div class="border-t-2 border-slate-900">
-    <div class="border-t border-slate-300"></div>
+  <div class="border-t border-slate-700">
     <Container class="flex flex-col items-center justify-between gap-2 py-4 text-xs text-slate-500 sm:flex-row">
       <p>© <CurrentYear /> {SITE.name} · Alle rechten voorbehouden</p>
-      <p class="italic" style="font-family: var(--font-heading);">Alles over het theorie-examen</p>
+      <div class="flex gap-4">
+        <a href="/over-ons/" class="hover:text-slate-300 transition-colors">Over ons</a>
+        <a href="/contact/" class="hover:text-slate-300 transition-colors">Contact</a>
+      </div>
     </Container>
   </div>
 </footer>

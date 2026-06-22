@@ -4,63 +4,57 @@ import { SITE } from "@lib/site";
 const path = new URL(Astro.request.url).pathname;
 const isActive = (href: string) => href === "/" ? path === "/" : path.startsWith(href);
 ---
-<!-- Krantenmasthead: utility bar + groot gecentreerd logo + nav eronder -->
-<header class="bg-white border-b-2 border-slate-900">
+<header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
+  <Container class="flex h-16 items-center justify-between gap-6">
 
-  <!-- Smalle bovenste balk -->
-  <div class="border-b border-slate-200 bg-slate-50">
-    <Container class="flex h-8 items-center justify-between">
-      <span class="text-xs text-slate-500 tracking-wide">autotheorieblog.nl</span>
-      <span class="text-xs text-slate-500 tracking-wide hidden sm:block">CBR theorie-examen 2026 · Gratis artikelen</span>
-      <div class="flex items-center gap-4 text-xs text-slate-500">
-        <a href="/contact/" class="hover:text-brand-700">Contact</a>
-        <a href="/over-ons/" class="hover:text-brand-700">Over ons</a>
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2.5 shrink-0 group">
+      <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-700 text-white text-sm font-black leading-none group-hover:bg-brand-800 transition-colors">
+        AT
       </div>
-    </Container>
-  </div>
-
-  <!-- Masthead: gestyled logo gecentreerd -->
-  <Container class="py-5 text-center">
-    <a href="/" class="inline-block group">
-      <div class="text-xs font-bold uppercase tracking-[0.4em] text-brand-700 mb-1">Autotheorie</div>
-      <div style="font-family: var(--font-heading);" class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl group-hover:text-brand-700 transition-colors">
-        Blog
-      </div>
-      <div class="mt-1 h-0.5 w-full bg-slate-900"></div>
-      <div class="mt-1 h-px w-full bg-slate-300"></div>
+      <span class="font-bold text-slate-900 text-lg leading-tight hidden sm:block">
+        Autotheorie<span class="text-brand-700">Blog</span>
+      </span>
     </a>
-  </Container>
 
-  <!-- Hoofdnavigatie gecentreerd -->
-  <nav class="hidden border-t border-b border-slate-200 lg:block" aria-label="Hoofdmenu">
-    <Container class="flex items-center justify-center gap-8 py-2">
+    <!-- Desktop nav -->
+    <nav class="hidden lg:flex items-center gap-1" aria-label="Hoofdmenu">
       {SITE.nav.filter(i => i.href !== "/over-ons/" && i.href !== "/contact/").map((item) => (
         <a
           href={item.href}
           class:list={[
-            "text-sm font-medium tracking-wide uppercase transition hover:text-brand-700 py-1",
-            isActive(item.href) ? "text-brand-700 border-b-2 border-brand-700" : "text-slate-700",
+            "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+            isActive(item.href)
+              ? "bg-brand-50 text-brand-700"
+              : "text-slate-600 hover:text-slate-900 hover:bg-slate-100",
           ]}
         >{item.label}</a>
       ))}
-    </Container>
-  </nav>
+    </nav>
 
-  <!-- Mobiel menu toggle -->
-  <div class="flex items-center justify-end border-t border-slate-200 px-4 py-2 lg:hidden">
-    <button
-      data-menu-toggle
-      class="inline-flex items-center gap-2 text-sm font-medium text-slate-700"
-      aria-label="Menu openen" aria-expanded="false"
-    >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-      Menu
-    </button>
-  </div>
-  <div data-mobile-menu class="hidden border-t border-slate-200 bg-white lg:hidden">
-    <Container class="flex flex-col py-3">
+    <!-- Right: contact + mobile toggle -->
+    <div class="flex items-center gap-2">
+      <a href="/contact/" class="hidden lg:inline-flex items-center rounded-md bg-brand-700 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-800 transition-colors">
+        Contact
+      </a>
+      <button
+        data-menu-toggle
+        class="inline-flex lg:hidden items-center justify-center rounded-md p-2 text-slate-600 hover:bg-slate-100"
+        aria-label="Menu openen" aria-expanded="false"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </Container>
+
+  <!-- Mobile menu -->
+  <div data-mobile-menu class="hidden border-t border-slate-100 bg-white lg:hidden">
+    <Container class="flex flex-col py-2">
       {SITE.nav.map((item) => (
-        <a href={item.href} class="border-b border-slate-100 px-1 py-3 text-sm font-medium text-slate-700 last:border-0 hover:text-brand-700">{item.label}</a>
+        <a href={item.href} class:list={[
+          "rounded-md px-3 py-2.5 text-sm font-medium",
+          isActive(item.href) ? "text-brand-700 bg-brand-50" : "text-slate-700 hover:bg-slate-50"
+        ]}>{item.label}</a>
       ))}
     </Container>
   </div>
