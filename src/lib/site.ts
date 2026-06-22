@@ -10,6 +10,7 @@ export const SITE = {
     { label: "Blog", href: "/blog/" },
     { label: "Theorie uitleg", href: "/theorie-uitleg/" },
     { label: "Rijbewijs halen", href: "/rijbewijs-halen/" },
+    { label: "Verkeersborden", href: "/verkeersborden-oefenen/" },
     { label: "Over ons", href: "/over-ons/" },
     { label: "Contact", href: "/contact/" },
   ],
