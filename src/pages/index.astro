@@ -28,29 +28,135 @@ const faq = [
   title={`${SITE.name} — tips & uitleg voor het CBR theorie-examen`}
   description={SITE.description}
 >
-  <!-- Hero balk -->
-  <section class="bg-brand-700 text-white">
-    <Container class="py-10 lg:py-14">
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-brand-100 mb-4">
-          CBR theorie-examen 2026
+  <!-- Hero met illustratie -->
+  <section class="relative bg-brand-700 text-white overflow-hidden">
+    <!-- Decoratieve achtergrond cirkels -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-brand-600 opacity-40"></div>
+      <div class="absolute top-1/2 -left-16 h-64 w-64 rounded-full bg-brand-800 opacity-30"></div>
+      <div class="absolute bottom-0 right-1/3 h-48 w-48 rounded-full bg-brand-500 opacity-20"></div>
+    </div>
+
+    <Container class="relative py-10 lg:py-14">
+      <div class="grid lg:grid-cols-2 gap-8 items-end">
+
+        <!-- Links: tekst -->
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-brand-100 mb-4">
+            CBR theorie-examen 2026
+          </div>
+          <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
+            Alles over het<br/>autotheorie-examen
+          </h1>
+          <p class="mt-4 text-brand-100 text-lg leading-relaxed max-w-lg">
+            Praktische artikelen, tips en uitleg om je theorie-examen in één keer te halen.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="/blog/" class="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-brand-700 hover:bg-brand-50 transition-colors shadow-sm">
+              Alle artikelen
+            </a>
+            <a href="/theorie-uitleg/" class="inline-flex items-center gap-2 rounded-lg border border-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
+              Theorie uitleg
+            </a>
+          </div>
+          <!-- Snelle stats -->
+          <div class="mt-8 flex gap-6">
+            {[
+              { val: "65", label: "vragen" },
+              { val: "77%", label: "slagingsnorm" },
+              { val: "30 min", label: "tijdsduur" },
+            ].map((s) => (
+              <div>
+                <div class="text-2xl font-extrabold text-white">{s.val}</div>
+                <div class="text-xs text-brand-200">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
-        <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
-          Alles over het autotheorie-examen
-        </h1>
-        <p class="mt-4 text-brand-100 text-lg leading-relaxed max-w-xl">
-          Praktische artikelen, tips en uitleg om je theorie-examen in één keer te halen.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/blog/" class="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-bold text-brand-700 hover:bg-brand-50 transition-colors">
-            Alle artikelen
-          </a>
-          <a href="/theorie-uitleg/" class="inline-flex items-center gap-2 rounded-lg border border-brand-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-600 transition-colors">
-            Theorie uitleg
-          </a>
+
+        <!-- Rechts: SVG wegscène illustratie -->
+        <div class="hidden lg:flex justify-center items-end">
+          <svg viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-sm drop-shadow-2xl" aria-hidden="true">
+            <!-- Lucht -->
+            <rect width="400" height="100" fill="#bfdbfe" rx="12"/>
+            <!-- Wolken -->
+            <ellipse cx="80" cy="38" rx="34" ry="14" fill="white" opacity="0.85"/>
+            <ellipse cx="108" cy="32" rx="26" ry="11" fill="white" opacity="0.85"/>
+            <ellipse cx="290" cy="42" rx="28" ry="12" fill="white" opacity="0.85"/>
+            <ellipse cx="316" cy="36" rx="20" ry="9" fill="white" opacity="0.85"/>
+            <!-- Gras / landschap -->
+            <rect y="96" width="400" height="184" fill="#86efac"/>
+            <rect y="96" width="400" height="6" fill="#4ade80" opacity="0.5"/>
+            <!-- Huizen links achtergrond -->
+            <rect x="22" y="76" width="42" height="28" rx="2" fill="#fef3c7"/>
+            <path d="M 16 76 L 43 54 L 70 76 Z" fill="#b91c1c"/>
+            <rect x="30" y="88" width="10" height="16" rx="1" fill="#93c5fd" opacity="0.9"/>
+            <!-- Huizen rechts achtergrond -->
+            <rect x="332" y="76" width="42" height="28" rx="2" fill="#fef3c7"/>
+            <path d="M 326 76 L 353 54 L 380 76 Z" fill="#b91c1c"/>
+            <rect x="356" y="88" width="10" height="16" rx="1" fill="#93c5fd" opacity="0.9"/>
+            <!-- Weg (perspectief trapezium) -->
+            <path d="M 112 280 L 187 104 L 213 104 L 288 280 Z" fill="#4b5563"/>
+            <!-- Wegkant lijnen -->
+            <path d="M 112 280 L 187 104" stroke="#d1d5db" stroke-width="1.5" opacity="0.4"/>
+            <path d="M 288 280 L 213 104" stroke="#d1d5db" stroke-width="1.5" opacity="0.4"/>
+            <!-- Bermen -->
+            <path d="M 92 280 L 177 104 L 187 104 L 112 280 Z" fill="#6b7280" opacity="0.55"/>
+            <path d="M 288 280 L 213 104 L 223 104 L 308 280 Z" fill="#6b7280" opacity="0.55"/>
+            <!-- Streepmarkering (perspectief) -->
+            <rect x="198" y="108" width="4" height="7" rx="2" fill="white" opacity="0.9"/>
+            <rect x="196" y="126" width="5" height="9" rx="2" fill="white" opacity="0.9"/>
+            <rect x="194" y="148" width="6" height="11" rx="2" fill="white" opacity="0.9"/>
+            <rect x="191" y="173" width="7" height="13" rx="2" fill="white" opacity="0.9"/>
+            <rect x="188" y="202" width="8" height="15" rx="2" fill="white" opacity="0.9"/>
+            <rect x="184" y="235" width="9" height="17" rx="2" fill="white" opacity="0.9"/>
+            <!-- Borden paal links -->
+            <rect x="146" y="152" width="4" height="92" rx="2" fill="#9ca3af"/>
+            <!-- Max snelheid bord (blauw, Nederland) -->
+            <circle cx="148" cy="136" r="24" fill="#1d4ed8"/>
+            <circle cx="148" cy="136" r="19" fill="white"/>
+            <text x="148" y="143" text-anchor="middle" font-size="15" font-weight="900" fill="#1e293b" font-family="Arial,sans-serif">50</text>
+            <!-- Borden paal rechts -->
+            <rect x="250" y="152" width="4" height="92" rx="2" fill="#9ca3af"/>
+            <!-- Gevaar driehoek -->
+            <path d="M 252 108 L 276 148 L 228 148 Z" fill="white"/>
+            <path d="M 252 108 L 276 148 L 228 148 Z" fill="none" stroke="#ef4444" stroke-width="5" stroke-linejoin="round"/>
+            <rect x="250" y="121" width="4" height="14" rx="2" fill="#1e293b"/>
+            <circle cx="252" cy="141" r="2.5" fill="#1e293b"/>
+            <!-- Bomen links -->
+            <rect x="50" y="188" width="7" height="34" rx="2" fill="#92400e"/>
+            <ellipse cx="54" cy="178" rx="21" ry="25" fill="#15803d"/>
+            <ellipse cx="45" cy="190" rx="14" ry="18" fill="#16a34a"/>
+            <!-- Bomen rechts -->
+            <rect x="338" y="185" width="7" height="37" rx="2" fill="#92400e"/>
+            <ellipse cx="342" cy="174" rx="21" ry="25" fill="#15803d"/>
+            <ellipse cx="351" cy="187" rx="14" ry="17" fill="#16a34a"/>
+            <!-- Auto (vogelperspectief, paars = brand kleur) -->
+            <g transform="translate(200,228)">
+              <ellipse cx="1" cy="5" rx="25" ry="9" fill="black" opacity="0.18"/>
+              <rect x="-21" y="-35" width="42" height="70" rx="10" fill="#5b21b6"/>
+              <rect x="-15" y="-27" width="30" height="38" rx="6" fill="#4c1d95"/>
+              <rect x="-13" y="-25" width="26" height="14" rx="4" fill="#93c5fd" opacity="0.9"/>
+              <rect x="-12" y="10" width="24" height="11" rx="3" fill="#93c5fd" opacity="0.6"/>
+              <rect x="-29" y="-27" width="10" height="16" rx="4" fill="#111827"/>
+              <rect x="19" y="-27" width="10" height="16" rx="4" fill="#111827"/>
+              <rect x="-29" y="13" width="10" height="16" rx="4" fill="#111827"/>
+              <rect x="19" y="13" width="10" height="16" rx="4" fill="#111827"/>
+              <rect x="-17" y="-36" width="9" height="4" rx="2" fill="#fde68a"/>
+              <rect x="8" y="-36" width="9" height="4" rx="2" fill="#fde68a"/>
+              <rect x="-15" y="32" width="9" height="3" rx="1.5" fill="#fca5a5"/>
+              <rect x="6" y="32" width="9" height="3" rx="1.5" fill="#fca5a5"/>
+            </g>
+          </svg>
         </div>
       </div>
     </Container>
+
+    <!-- Wave separator -->
+    <svg class="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 52" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 52L1440 52L1440 24C1100 52 340 0 0 24Z" fill="white"/>
+    </svg>
+    <div class="h-10"></div>
   </section>
 
   <!-- Uitgelicht artikel + grid -->
@@ -61,11 +167,10 @@ const faq = [
       <div class="lg:col-span-2">
         <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Nieuwste artikel</h2>
 
-        <!-- Uitgelicht kaart met stats naast de tekst -->
+        <!-- Uitgelicht kaart met stats rechts -->
         {lead && (
           <div class="rounded-xl border border-slate-200 bg-white hover:border-brand-300 hover:shadow-md transition-all mb-6">
             <div class="grid sm:grid-cols-5">
-              <!-- Tekst: 3/5 -->
               <a href={`/${lead.id}/`} class="group block p-6 sm:col-span-3 border-b sm:border-b-0 sm:border-r border-slate-100">
                 <div class="flex items-center gap-2 mb-3">
                   <span class="inline-flex rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-semibold text-brand-700">Uitgelicht</span>
@@ -80,10 +185,9 @@ const faq = [
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </div>
               </a>
-
-              <!-- CBR examenstats: 2/5 -->
-              <div class="p-6 sm:col-span-2 flex flex-col justify-center gap-5">
-                <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">CBR theorie in cijfers</div>
+              <!-- CBR examenstats -->
+              <div class="p-6 sm:col-span-2 flex flex-col justify-center gap-4">
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400">CBR in cijfers</div>
                 {[
                   { label: "Vragen", value: "65", sub: "meerkeuzevragen" },
                   { label: "Slagingsnorm", value: "77%", sub: "minimaal 50 goed" },
@@ -103,7 +207,7 @@ const faq = [
           </div>
         )}
 
-        <!-- Kleine artikelen grid -->
+        <!-- Artikelen grid -->
         {grid.length > 0 && (
           <div class="grid gap-4 sm:grid-cols-2">
             {grid.slice(0, 4).map((p) => <BlogPostCard post={p} />)}
@@ -117,9 +221,8 @@ const faq = [
         </div>
       </div>
 
-      <!-- Sidebar: 1/3 -->
+      <!-- Sidebar -->
       <div class="flex flex-col gap-6">
-        <!-- Onderwerpen -->
         <div class="rounded-xl border border-slate-200 bg-white p-5">
           <h2 class="text-sm font-bold text-slate-700 mb-4 flex items-center gap-2">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-brand-600"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
@@ -140,7 +243,6 @@ const faq = [
           </ul>
         </div>
 
-        <!-- CTA blok -->
         <div class="rounded-xl bg-brand-700 p-5 text-white">
           <h2 class="font-bold text-lg leading-snug mb-2">Snel slagen voor je theorie?</h2>
           <p class="text-sm text-brand-100 leading-relaxed mb-4">Lees onze gratis artikelen en ga goed voorbereid naar het CBR.</p>
@@ -156,7 +258,6 @@ const faq = [
   <section class="bg-white border-t border-slate-200">
     <Container class="py-(--spacing-section)">
       <div class="grid gap-10 lg:grid-cols-3">
-        <!-- Kop links -->
         <div>
           <div class="inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 mb-4">Veelgestelde vragen</div>
           <h2 class="text-2xl font-extrabold text-slate-900 leading-tight">Vragen over het theorie-examen</h2>
@@ -165,7 +266,6 @@ const faq = [
             Meer lezen in het blog →
           </a>
         </div>
-        <!-- Vragen rechts -->
         <div class="lg:col-span-2 grid gap-4 sm:grid-cols-2">
           {faq.map((item) => (
             <div class="rounded-xl border border-slate-200 bg-slate-50 p-5">
@@ -178,18 +278,18 @@ const faq = [
     </Container>
   </section>
 
-  <!-- Stap 1-2-3 blok -->
+  <!-- Stap 1-2-3 -->
   <section class="bg-slate-50 border-t border-slate-200">
     <Container class="py-(--spacing-section)">
       <h2 class="text-2xl font-extrabold text-slate-900 mb-8 text-center">Hoe haal je je rijbewijs?</h2>
       <div class="grid gap-4 sm:grid-cols-3">
         {[
-          { step: "1", title: "Theorie leren", desc: "Leer de verkeersregels, borden en gevaarherkenning via onze artikelen.", color: "bg-blue-50 border-blue-200", num: "text-blue-200", badge: "bg-blue-600" },
-          { step: "2", title: "Oefenexamen", desc: "Oefen met officiële CBR-vragen tot je consistent 80%+ scoort.", color: "bg-brand-50 border-brand-200", num: "text-brand-200", badge: "bg-brand-600" },
-          { step: "3", title: "Examen doen", desc: "Ga met vertrouwen naar het CBR en haal je theorie in één keer.", color: "bg-green-50 border-green-200", num: "text-green-200", badge: "bg-green-600" },
+          { step: "1", title: "Theorie leren", desc: "Leer de verkeersregels, borden en gevaarherkenning via onze gratis artikelen.", badge: "bg-blue-600", card: "bg-blue-50 border-blue-200" },
+          { step: "2", title: "Oefenexamen", desc: "Oefen met officiële CBR-vragen tot je consistent 80%+ scoort.", badge: "bg-brand-600", card: "bg-brand-50 border-brand-200" },
+          { step: "3", title: "Examen doen", desc: "Ga met vertrouwen naar het CBR en haal je theorie in één keer.", badge: "bg-green-600", card: "bg-green-50 border-green-200" },
         ].map((item) => (
-          <div class={`relative rounded-xl border p-6 ${item.color}`}>
-            <span class={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold text-white mb-4 ${item.badge}`}>{item.step}</span>
+          <div class={`rounded-xl border p-6 ${item.card}`}>
+            <span class={`inline-flex h-7 w-7 items-center justify-center rounded-full text-sm font-bold text-white mb-4 ${item.badge}`}>{item.step}</span>
             <h3 class="font-bold text-slate-900 mb-1">{item.title}</h3>
             <p class="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
           </div>
